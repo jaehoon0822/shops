@@ -7,13 +7,13 @@ import GlobalStyles from '../commons/styles/globalStyle'
 
 export default function App({ Component, pageProps }: AppProps) {
   return (
-    // <RecoilRoot>
-    // <ApolloSettings>
-    // <Layout>
-    // <GlobalStyles />
-    <Component {...pageProps} />
-    // </Layout>
-    // </ApolloSettings>
-    // </RecoilRoot>
+    <RecoilRoot>
+      <ApolloSettings>
+        <Layout>
+          <GlobalStyles />
+          <Component {...pageProps} />
+        </Layout>
+      </ApolloSettings>
+    </RecoilRoot>
   )
 }

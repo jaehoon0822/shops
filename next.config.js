@@ -1,4 +1,5 @@
 /** @type {import('next').NextConfig} */
+
 const withTwin = require('./src/commons/config/withTwin')
 
 const nextConfig = withTwin({

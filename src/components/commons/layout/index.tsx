@@ -1,8 +1,19 @@
 import React from 'react'
-import tw from 'twin.macro'
+import Nav from './nav'
+import Topbar from './topbar'
+import UseLayout from '../hooks/custom/UseLayout'
+import Footer from './footer'
 
-const Layout = ({ children }: { children: JSX.Element[] }): JSX.Element => (
-  <div css={tw`bg-red-50`}>{children}</div>
-)
+const Layout = ({ children }: { children: JSX.Element[] }): JSX.Element => {
+  const { isSignPage } = UseLayout()
+  return (
+    <>
+      {!isSignPage ? <Topbar /> : null}
+      <Nav isSignPage={isSignPage} />
+      <div>{children}</div>
+      <Footer />
+    </>
+  )
+}
 
 export default Layout
