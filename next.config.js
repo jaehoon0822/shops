@@ -1,5 +1,5 @@
 /** @type {import('next').NextConfig} */
-const withTwin = require('./commons/config/withTwin')
+const withTwin = require('./src/commons/config/withTwin')
 
 const nextConfig = withTwin({
   reactStrictMode: true,

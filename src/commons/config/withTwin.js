@@ -1,8 +1,8 @@
 const path = require('path')
 
 const includedDirs = [
-  path.resolve(__dirname, '../../src'),
-  path.resolve(__dirname, 'styles'),
+  path.resolve(__dirname, '../../.'),
+  path.resolve(__dirname, '../../../styles'),
 ]
 
 module.exports = function withTwin(nextConfig) {
