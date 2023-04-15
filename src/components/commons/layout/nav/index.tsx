@@ -10,6 +10,7 @@ import {
 } from '../index.styled'
 import { Container, DividerY, Wrapper } from '../../../../commons/styles'
 import UseNav from '../../hooks/custom/UseNav'
+import UseMovePage from '../../hooks/custom/UseMovePage'
 
 interface NavProps {
   isSignPage: boolean
@@ -17,6 +18,7 @@ interface NavProps {
 
 const Nav = ({ isSignPage }: NavProps) => {
   const { navContents, navInfos } = UseNav()
+  const { onMovePage } = UseMovePage()
 
   return (
     <Container css={tw`bg-black h-[100px]`}>
@@ -28,7 +30,7 @@ const Nav = ({ isSignPage }: NavProps) => {
         `}
         >
           {isSignPage ? (
-            <LogoImageWrapper>
+            <LogoImageWrapper onClick={onMovePage('/main')}>
               <Image
                 src="/images/logo-white.svg"
                 width="100px"
@@ -52,7 +54,12 @@ const Nav = ({ isSignPage }: NavProps) => {
         {isSignPage ? (
           <ContentsWrapper css={tw`text-[14px] mx-auto`}>
             <ContentsBox>
-              <ContentsLink css={tw`text-white`}>회원가입</ContentsLink>
+              <ContentsLink
+                css={tw`text-white`}
+                onClick={onMovePage('/signUp')}
+              >
+                회원가입
+              </ContentsLink>
             </ContentsBox>
             <ContentsBox>
               <ContentsLink css={tw`text-white`}>장바구니</ContentsLink>
