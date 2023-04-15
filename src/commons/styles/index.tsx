@@ -43,5 +43,7 @@ export const StyledInput = tw.input`
 export const Button = styled.button<ButtonProps>(() => [
   ({ variant = 'default' }) => ButtonVariants[variant],
   ({ isFilled = 'false' }) =>
-    isFilled ? tw`bg-black text-white` : tw`bg-white text-black`,
+    isFilled
+      ? tw`bg-black text-white outline outline-2 outline-black `
+      : tw`bg-white text-black outline outline-2 outline-black `,
 ])

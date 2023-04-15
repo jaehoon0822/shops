@@ -1,4 +1,3 @@
-import tw from 'twin.macro'
 import Nav from './nav'
 import Topbar from './topbar'
 import UseLayout from '../hooks/custom/UseLayout'

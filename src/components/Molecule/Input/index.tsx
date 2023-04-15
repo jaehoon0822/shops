@@ -18,7 +18,7 @@ const Input = ({ name, label, ...rest }: InputProps) => {
   } = useFormContext()
   return (
     <Div tw="relative">
-      <ContentsSpan css={tw`block whitespace-nowrap w-[113px] text-left`}>
+      <ContentsSpan css={tw`block whitespace-nowrap w-[113px] text-left pr-20`}>
         {label}
       </ContentsSpan>
       <StyledInput {...rest} {...register(name)} />

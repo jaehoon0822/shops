@@ -1,25 +1,27 @@
 import { yupResolver } from '@hookform/resolvers/yup'
 import { useSetRecoilState } from 'recoil'
-import { SignInSchema } from '../../../../commons/validation/SignIn.yup'
+import { signInSchema } from '../../../../commons/validation/signIn.yup'
 import UseMutationLoginUser from '../mutation/UseMutationLoginUser'
 import { IMutationLoginUserArgs } from '../../../../commons/types/generated/types'
 import { accessTokenState } from '../../../../commons/stores'
 
 const UseSignIn = () => {
-  const signInResolver = yupResolver(SignInSchema)
+  const signInResolver = yupResolver(signInSchema)
   const { loginUser } = UseMutationLoginUser()
   const setAccessToken = useSetRecoilState(accessTokenState)
 
-  const InputInfo = [
+  const inputInfo = [
     {
       label: '아이디',
       name: 'email',
       placeholder: '이메일 아이디를 @까지 정확하게 입력하세요.',
+      type: 'email',
     },
     {
       label: '비밀번호',
       name: 'password',
       placeholder: '영문+숫자 조합 8~16자리를 입력해주세요.',
+      type: 'password',
     },
   ]
 
@@ -43,7 +45,7 @@ const UseSignIn = () => {
   return {
     signInResolver,
     onSubmitSignIn,
-    InputInfo,
+    inputInfo,
   }
 }
 
