@@ -32,7 +32,7 @@ const Topbar = () => {
         </LogoImageWrapper>
         <ContentsWrapper>
           <ContentsBox>
-            {!isLoggedIn ? (
+            {isLoggedIn ? (
               <ContentsSpan>
                 <ContentsSpan
                   css={tw`
