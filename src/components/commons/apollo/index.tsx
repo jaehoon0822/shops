@@ -8,7 +8,7 @@ import {
 } from '@apollo/client'
 import { accessTokenState, refreshTokenLoadable } from '../../../commons/stores'
 import uploadLink from './links/uploadLink'
-import errorLink from './links/errorLink'
+import UseErrorLink from './links/UseErrorLink'
 
 const cachedMemory = new InMemoryCache()
 
@@ -19,6 +19,7 @@ interface ApolloSettingsProps {
 const ApolloSettings = ({ children }: ApolloSettingsProps) => {
   const setTokenState = useSetRecoilState(accessTokenState)
   const getAccessTokenLodable = useRecoilValueLoadable(refreshTokenLoadable)
+  const { errorLink } = UseErrorLink()
 
   useEffect(() => {
     getAccessTokenLodable.toPromise().then((newAccessToken) => {

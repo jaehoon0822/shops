@@ -1,5 +1,13 @@
 import tw, { styled } from 'twin.macro'
-import { DividerYProps } from './types'
+import { ButtonProps, DividerYProps } from './types'
+import { ButtonVariants } from './variants'
+
+export const Div = tw.div`
+  flex
+  justify-between
+  items-center
+  w-full
+`
 
 export const Wrapper = tw.div`
   flex
@@ -19,3 +27,21 @@ export const DividerY = styled.div<DividerYProps>`
   height: ${({ h }) => h ?? null};
   width: ${({ w }) => w ?? '1px'};
 `
+
+export const StyledInput = tw.input`
+  outline-none
+  border-none
+  py-[21px]
+  px-[18px]
+  w-full
+  border
+  text-[15px]
+  placeholder:text-[#a9a9a9]
+  bg-[#e9e9e9]
+`
+
+export const Button = styled.button<ButtonProps>(() => [
+  ({ variant = 'default' }) => ButtonVariants[variant],
+  ({ isFilled = 'false' }) =>
+    isFilled ? tw`bg-black text-white` : tw`bg-white text-black`,
+])

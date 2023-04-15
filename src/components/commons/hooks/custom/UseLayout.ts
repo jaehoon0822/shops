@@ -4,7 +4,7 @@ import UseRoute from './UseRoute'
 const UseLayout = () => {
   const { pathname } = UseRoute()
   const isSignPage = useMemo(
-    () => ['/login', '/join'].includes(pathname),
+    () => ['/signIn', '/signUp'].includes(pathname),
     [pathname],
   )
   return {

@@ -9,10 +9,11 @@ import {
   ContentsWrapper,
 } from '../index.styled'
 import UseTopbar from '../../hooks/custom/UseTopbar'
+import UseMovePage from '../../hooks/custom/UseMovePage'
 
 const Topbar = () => {
-  const { isLoggedIn, onMoveLoginPage, onMoveSignUpPage, onMoveMainPage } =
-    UseTopbar()
+  const { isLoggedIn } = UseTopbar()
+  const { onMovePage } = UseMovePage()
 
   return (
     <Container>
@@ -21,7 +22,7 @@ const Topbar = () => {
           css={tw`
           cursor-pointer 
         `}
-          onClick={onMoveMainPage}
+          onClick={onMovePage('/main')}
         >
           <Image
             src="/images/logo-black.svg"
@@ -54,14 +55,18 @@ const Topbar = () => {
                 </ContentsLink>
               </ContentsSpan>
             ) : (
-              <ContentsLink onClick={onMoveLoginPage}>로그인</ContentsLink>
+              <ContentsLink onClick={onMovePage('/signIn')}>
+                로그인
+              </ContentsLink>
             )}
           </ContentsBox>
           <ContentsBox>
             {isLoggedIn ? (
               <ContentsLink>로그아웃</ContentsLink>
             ) : (
-              <ContentsLink onClick={onMoveSignUpPage}>회원가입</ContentsLink>
+              <ContentsLink onClick={onMovePage('/signUp')}>
+                회원가입
+              </ContentsLink>
             )}
           </ContentsBox>
           <ContentsBox>
