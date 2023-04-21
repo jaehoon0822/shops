@@ -22,12 +22,8 @@ export const signUpSchema = yup.object({
   CheckPassword: yup
     .string()
     .required('패스워드를 입력해주어야 합니다.')
+    .oneOf([yup.ref('password')], '패스워드가 일치하지 않습니다.')
     .max(12, '12자이하로 입력해주세요.')
-    .min(6, '6자 이상 입력해주세요.')
-    .matches(
-      regexPassword,
-      '영문(대소문자), 숫자, 기호가 최소 1글자가 입력되어야 합니다.',
-    )
-    .matches(regexSpacing, '띄어쓰기가 입력되었습니다.'),
+    .min(6, '6자 이상 입력해주세요.'),
   name: yup.string().required('이름을 입력해 주세요.'),
 })

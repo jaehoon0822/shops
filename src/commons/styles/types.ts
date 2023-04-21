@@ -1,8 +1,9 @@
 export type ButtonVariant = 'big' | 'default' | 'small'
 
-export interface DividerYProps {
+export interface DividerProps {
   h: string
   w?: string
+  color?: string
 }
 
 export interface ButtonProps {

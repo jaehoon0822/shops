@@ -1,15 +1,16 @@
 import Image from 'next/image'
+import Link from 'next/link'
 import tw from 'twin.macro'
 import { Container, Wrapper } from '../../../../commons/styles'
 import {
   LogoImageWrapper,
   ContentsBox,
   ContentsLink,
-  ContentsSpan,
   ContentsWrapper,
 } from '../index.styled'
 import UseTopbar from '../../hooks/custom/UseTopbar'
 import UseMovePage from '../../hooks/custom/UseMovePage'
+import PointInfo from './pointInfo'
 
 const Topbar = () => {
   const { isLoggedIn } = UseTopbar()
@@ -22,7 +23,7 @@ const Topbar = () => {
           css={tw`
           cursor-pointer 
         `}
-          onClick={onMovePage('/main')}
+          onClick={onMovePage('/')}
         >
           <Image
             src="/images/logo-black.svg"
@@ -34,39 +35,22 @@ const Topbar = () => {
         <ContentsWrapper>
           <ContentsBox>
             {isLoggedIn ? (
-              <ContentsSpan>
-                <ContentsSpan
-                  css={tw`
-                    font-extrabold 
-                  `}
-                >
-                  노은정
-                </ContentsSpan>
-                님 포인트
-                <ContentsLink>
-                  <ContentsSpan
-                    css={tw`
-                    px-4
-                `}
-                  >
-                    1,490 P
-                  </ContentsSpan>
-                  <ContentsSpan>충전</ContentsSpan>
-                </ContentsLink>
-              </ContentsSpan>
+              <PointInfo />
             ) : (
-              <ContentsLink onClick={onMovePage('/signIn')}>
-                로그인
-              </ContentsLink>
+              <Link href="/signIn">
+                <ContentsLink>로그인</ContentsLink>
+              </Link>
             )}
           </ContentsBox>
           <ContentsBox>
             {isLoggedIn ? (
-              <ContentsLink>로그아웃</ContentsLink>
+              <Link href="/">
+                <ContentsLink>로그아웃</ContentsLink>
+              </Link>
             ) : (
-              <ContentsLink onClick={onMovePage('/signUp')}>
-                회원가입
-              </ContentsLink>
+              <Link href="/signUp">
+                <ContentsLink>회원가입</ContentsLink>
+              </Link>
             )}
           </ContentsBox>
           <ContentsBox>
