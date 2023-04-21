@@ -17,7 +17,7 @@ interface NavProps {
 }
 
 const Nav = ({ isSignPage }: NavProps) => {
-  const { navContents, navInfos } = UseNav()
+  const { navContents, navInfos, pathname } = UseNav()
   const { onMovePage } = UseMovePage()
 
   return (
@@ -30,7 +30,7 @@ const Nav = ({ isSignPage }: NavProps) => {
         `}
         >
           {isSignPage ? (
-            <LogoImageWrapper onClick={onMovePage('/main')}>
+            <LogoImageWrapper onClick={onMovePage('/')}>
               <Image
                 src="/images/logo-white.svg"
                 width="100px"
@@ -56,9 +56,13 @@ const Nav = ({ isSignPage }: NavProps) => {
             <ContentsBox>
               <ContentsLink
                 css={tw`text-white`}
-                onClick={onMovePage('/signUp')}
+                onClick={
+                  pathname === '/signIn'
+                    ? onMovePage('/signUp')
+                    : onMovePage('/signIn')
+                }
               >
-                회원가입
+                {pathname === '/signIn' ? '회원가입' : '로그인'}
               </ContentsLink>
             </ContentsBox>
             <ContentsBox>

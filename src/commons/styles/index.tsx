@@ -1,5 +1,5 @@
 import tw, { styled } from 'twin.macro'
-import { ButtonProps, DividerYProps } from './types'
+import { ButtonProps, DividerProps } from './types'
 import { ButtonVariants } from './variants'
 
 export const Div = tw.div`
@@ -22,10 +22,16 @@ export const Container = tw.div`
   bg-white
 `
 
-export const DividerY = styled.div<DividerYProps>`
-  background-color: #fff;
+export const DividerY = styled.div<DividerProps>`
+  background-color: ${({ color }) => color ?? 'white'};
   height: ${({ h }) => h ?? null};
   width: ${({ w }) => w ?? '1px'};
+`
+
+export const DividerX = styled.div<DividerProps>`
+  background-color: ${({ color }) => color ?? 'white'};
+  height: ${({ h }) => h ?? '1px'};
+  width: ${({ w }) => w ?? '100%'};
 `
 
 export const StyledInput = tw.input`
@@ -43,5 +49,7 @@ export const StyledInput = tw.input`
 export const Button = styled.button<ButtonProps>(() => [
   ({ variant = 'default' }) => ButtonVariants[variant],
   ({ isFilled = 'false' }) =>
-    isFilled ? tw`bg-black text-white` : tw`bg-white text-black`,
+    isFilled
+      ? tw`bg-black text-white outline outline-2 outline-black transition-all duration-100 ease-in hover:(opacity-50) active:(opacity-100 bg-black text-white)`
+      : tw`bg-white text-black outline outline-2 outline-black transition-all duration-100 ease-in hover:(opacity-50) active:(opacity-100)`,
 ])

@@ -6,12 +6,20 @@ interface FormProps {
   mode: Exclude<Mode, 'onTouched' | 'all'>
   resolver: Resolver
   onSubmit: (data: any) => void
+  defaultValue?: { [x: string]: any }
 }
 
-const Form = ({ children, mode, resolver, onSubmit }: FormProps) => {
+const Form = ({
+  children,
+  mode,
+  resolver,
+  onSubmit,
+  defaultValue,
+}: FormProps) => {
   const method = useForm({
     reValidateMode: mode,
     resolver,
+    defaultValues: defaultValue,
   })
   return (
     <FormProvider {...method}>

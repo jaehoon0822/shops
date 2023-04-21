@@ -20,9 +20,11 @@ const getAccessToken = async (): Promise<string | undefined> => {
     >(RESTORE_ACCESS_TOKEN)
 
     const newAccessToken = result.restoreAccessToken.accessToken
+    console.log('restore', newAccessToken)
 
     return newAccessToken
   } catch (err) {
+    console.log('err??')
     if (err instanceof Error) {
       console.log(err)
     }

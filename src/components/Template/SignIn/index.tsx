@@ -8,7 +8,7 @@ import Input from '../../Molecule/Input'
 import UseSignIn from '../../commons/hooks/custom/UseSignIn'
 
 const SignIn = () => {
-  const { signInResolver, onSubmitSignIn, InputInfo } = UseSignIn()
+  const { signInResolver, onSubmitSignIn, inputInfo } = UseSignIn()
   return (
     <Wrapper css={tw`flex-col`}>
       <SignHeader title="LOGIN" />
@@ -20,12 +20,13 @@ const SignIn = () => {
         >
           <Div css={tw`gap-x-4 h-full`}>
             <Div css={tw`flex-col gap-10`}>
-              {InputInfo.map((info) => (
+              {inputInfo.map((info) => (
                 <Input
                   key={uuidv4()}
                   label={info.label}
                   name={info.name}
                   placeholder={info.placeholder}
+                  type={info.type}
                 />
               ))}
             </Div>
