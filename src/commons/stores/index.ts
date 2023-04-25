@@ -13,3 +13,8 @@ export const refreshTokenLoadable = selector({
     return newAccessToken
   },
 })
+
+export const filesState = atom<string[]>({
+  key: 'fileState',
+  default: [],
+})

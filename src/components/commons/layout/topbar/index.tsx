@@ -1,7 +1,7 @@
 import Image from 'next/image'
 import Link from 'next/link'
 import tw from 'twin.macro'
-import { Container, Wrapper } from '../../../../commons/styles'
+import { Container, Div, Wrapper } from '../../../../commons/styles'
 import {
   LogoImageWrapper,
   ContentsBox,
@@ -13,7 +13,7 @@ import UseMovePage from '../../hooks/custom/UseMovePage'
 import PointInfo from './pointInfo'
 
 const Topbar = () => {
-  const { isLoggedIn } = UseTopbar()
+  const { isLoggedIn, onClickLogout } = UseTopbar()
   const { onMovePage } = UseMovePage()
 
   return (
@@ -44,9 +44,9 @@ const Topbar = () => {
           </ContentsBox>
           <ContentsBox>
             {isLoggedIn ? (
-              <Link href="/">
+              <Div onClick={onClickLogout}>
                 <ContentsLink>로그아웃</ContentsLink>
-              </Link>
+              </Div>
             ) : (
               <Link href="/signUp">
                 <ContentsLink>회원가입</ContentsLink>

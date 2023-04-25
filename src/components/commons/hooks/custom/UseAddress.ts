@@ -1,9 +1,8 @@
-import { useRef, useState } from 'react'
+import { useState } from 'react'
 import { Address } from 'react-daum-postcode'
 import { useFormContext } from 'react-hook-form'
 
 const UseAddress = () => {
-  const AddRef = useRef(null)
   const { register, setValue } = useFormContext()
   const [isActive, setIsActive] = useState<boolean>(false)
   const onToggleActive = () => {
@@ -12,11 +11,11 @@ const UseAddress = () => {
   }
   const onComplate = (data: Address) => {
     const { roadAddress, zonecode } = data
-    setValue('zipcode', zonecode)
-    setValue('address', roadAddress)
+    setValue('useditemAddress.zipcode', zonecode)
+    setValue('useditemAddress.address', roadAddress)
     document.body.style.removeProperty('overflow')
   }
-  return { register, isActive, onToggleActive, onComplate, AddRef }
+  return { register, isActive, onToggleActive, onComplate }
 }
 
 export default UseAddress

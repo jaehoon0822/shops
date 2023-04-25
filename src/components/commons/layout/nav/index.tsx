@@ -11,6 +11,7 @@ import {
 import { Container, DividerY, Wrapper } from '../../../../commons/styles'
 import UseNav from '../../hooks/custom/UseNav'
 import UseMovePage from '../../hooks/custom/UseMovePage'
+import Link from 'next/link'
 
 interface NavProps {
   isSignPage: boolean
@@ -54,16 +55,11 @@ const Nav = ({ isSignPage }: NavProps) => {
         {isSignPage ? (
           <ContentsWrapper css={tw`text-[14px] mx-auto`}>
             <ContentsBox>
-              <ContentsLink
-                css={tw`text-white`}
-                onClick={
-                  pathname === '/signIn'
-                    ? onMovePage('/signUp')
-                    : onMovePage('/signIn')
-                }
-              >
-                {pathname === '/signIn' ? '회원가입' : '로그인'}
-              </ContentsLink>
+              <Link href={pathname === '/signIn' ? '/signUp' : '/signIn'}>
+                <ContentsLink css={tw`text-white`}>
+                  {pathname === '/signIn' ? '회원가입' : '로그인'}
+                </ContentsLink>
+              </Link>
             </ContentsBox>
             <ContentsBox>
               <ContentsLink css={tw`text-white`}>장바구니</ContentsLink>
