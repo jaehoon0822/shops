@@ -4,10 +4,9 @@ const withTwin = require('./src/commons/config/withTwin')
 
 const nextConfig = withTwin({
   images: {
-    domains: ['unsplash.com', 'images.unsplash.com'],
+    domains: ['unsplash.com', 'images.unsplash.com', 'storage.googleapis.com'],
   },
   reactStrictMode: true,
-  swcMinify: true,
 })
 
 module.exports = nextConfig

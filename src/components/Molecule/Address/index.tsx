@@ -7,15 +7,15 @@ import { Button, Div } from '../../../commons/styles'
 import { ContentsSpan } from '../../commons/layout/index.styled'
 import Modal from '../Modal'
 import UseAddress from '../../commons/hooks/custom/UseAddress'
+import { AddressInput } from './index.styled'
 
 interface IAddressProps {
   label: string
-  inputs?: { name: string; placeholder: string }[]
+  inputs?: { name: string; placeholder: string; type: string }[]
 }
 
 const Address = ({ label, inputs }: IAddressProps) => {
-  const { register, isActive, onToggleActive, onComplate, AddRef } =
-    UseAddress()
+  const { register, isActive, onToggleActive, onComplate } = UseAddress()
 
   return (
     <Div tw="flex-col items-start">
@@ -31,15 +31,15 @@ const Address = ({ label, inputs }: IAddressProps) => {
             <Fragment key={uuidv4()}>
               {idx === 0 ? (
                 <Div tw="flex-row justify-start mb-4 items-center">
-                  <input
-                    tw="ml-[46px]
-                    w-[88px]
-                    h-[52px]
-                    py-[21px]
+                  <AddressInput
+                    tw="w-[88px]
+                    py-[12px]
                     px-[18px]
-                    mr-[16px]
                     outline-none
-                    border-2 border-[#e9e9e9] border-solid  bg-transparent"
+                    outline-2 
+                    outline-[#e9e9e9] 
+                    bg-transparent"
+                    type={input.type}
                     placeholder={input.placeholder}
                     {...register(input.name)}
                   />
@@ -53,7 +53,6 @@ const Address = ({ label, inputs }: IAddressProps) => {
                       buttonLabel="우편번호 검색"
                     >
                       <DaumPostcodeEmbed
-                        ref={AddRef}
                         onComplete={onComplate}
                         onClose={onToggleActive}
                       />
@@ -62,13 +61,11 @@ const Address = ({ label, inputs }: IAddressProps) => {
                 </Div>
               ) : (
                 <Div tw="flex-row justify-center mb-4 ">
-                  <input
+                  <AddressInput
+                    type={input.type}
                     tw="w-full
-                    bg-[#e9e9e9]
-                    ml-[46px]
-                    py-[21px]
                     outline-none
-                    px-[18px]"
+                    bg-[#e9e9e9]"
                     {...register(input.name)}
                   />
                 </Div>

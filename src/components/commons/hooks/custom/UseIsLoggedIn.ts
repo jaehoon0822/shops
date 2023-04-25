@@ -3,7 +3,6 @@ import { accessTokenState } from '../../../../commons/stores'
 
 const UseIsLoggedIn = () => {
   const accessToken = useRecoilValue(accessTokenState)
-  console.log(accessToken)
 
   return accessToken !== ''
 }

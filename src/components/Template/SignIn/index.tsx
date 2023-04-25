@@ -12,7 +12,7 @@ const SignIn = () => {
   return (
     <Wrapper css={tw`flex-col`}>
       <SignHeader title="LOGIN" />
-      <Div css={tw`w-1/2 flex-row py-[174px] gap-x-4`}>
+      <Div css={tw`w-1/2 flex-row pt-[174px] gap-x-4`}>
         <Form
           mode="onChange"
           resolver={signInResolver}

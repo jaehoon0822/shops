@@ -1,7 +1,7 @@
 const path = require('path')
 
 const includedDirs = [
-  path.resolve(__dirname, '../../.'),
+  path.resolve(__dirname, '../../../.'),
   path.resolve(__dirname, '../../styles'),
   path.resolve(__dirname, '../../../tailwind.config.js'),
 ]

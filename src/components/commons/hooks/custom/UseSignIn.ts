@@ -39,7 +39,6 @@ const UseSignIn = () => {
         },
       })
 
-      console.log(data)
       setAccessToken(tokenData?.loginUser.accessToken ?? '')
       push('/')
     } catch (err) {

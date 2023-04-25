@@ -2,15 +2,17 @@ import tw from 'twin.macro'
 import { Div } from '../../../commons/styles'
 
 export const EmpasisWrapper = tw(Div)`
+  pt-3.5
   flex-row
   justify-start
 `
 
 export const EmphasisSpan = tw.span`
+  whitespace-nowrap
   font-bold
   text-[20px]
   text-primaryRed
-  p-3.5
+  pr-3.5
 `
 
 export const PriceSpan = tw.span`
