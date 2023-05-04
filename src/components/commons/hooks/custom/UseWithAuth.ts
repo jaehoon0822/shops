@@ -1,16 +1,18 @@
 import { useEffect, useState } from 'react'
 import getAccessToken from '../../../../commons/libraries/getAccessToken'
 import UseRoute from './UseRoute'
+import UseMovePage from './UseMovePage'
 
 const UseWithAuth = () => {
   const [isSign, setIsSign] = useState<boolean>(false)
+  const { onMovePage } = UseMovePage()
 
   const { pathname, push } = UseRoute()
   const onClickPath = () => {
-    push('/signIn')
+    push('/SignIn')
   }
-  const isSignPage = ['/signIn', '/signUp'].includes(pathname)
-  const isNotAuthPage = ['/', '/signIn', '/signUp'].includes(pathname)
+  const isSignPage = ['/SignIn', '/SignUp'].includes(pathname)
+  const isNotAuthPage = ['/', '/SignIn', '/SignUp'].includes(pathname)
 
   useEffect(() => {
     ;(async () => {
@@ -28,6 +30,7 @@ const UseWithAuth = () => {
     onClickPath,
     isSignPage,
     isNotAuthPage,
+    onMovePage,
   }
 }
 

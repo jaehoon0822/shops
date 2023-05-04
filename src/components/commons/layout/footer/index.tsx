@@ -14,7 +14,7 @@ const Footer = () => {
   const { footerInfo } = UseFooter()
   return (
     <Container
-      css={tw`bg-gray-100 p-14 border-t-[1px] border-black border-solid mt-[116px]`}
+      css={tw`bg-gray-100 p-14 border-t-[1px] border-black border-solid`}
     >
       <Wrapper css={tw`flex-col items-start`}>
         <LogoImageWrapper css={tw`h-10`}>

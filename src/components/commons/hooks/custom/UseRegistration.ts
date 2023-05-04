@@ -4,11 +4,16 @@ import getTags from '../../../../commons/libraries/getTags'
 import { registrationSchema } from '../../../../commons/validation/registration.yup'
 import UseMutationCreateUseditem from '../mutation/UseMutationCreateUseditem'
 import { ICreateUseditemInput } from '../../../../commons/types/generated/types'
+import UseRoute from './UseRoute'
+import { FETCH_USEDITEMS } from '../query/UseFetchUseditems'
+import UseMutationUpdateUseditem from '../mutation/UseMutationUpdateUseditem'
+import { FETCH_USEDITEM } from '../query/UseFetchUseditem'
 
-const UseRegistration = () => {
+const UseRegistration = (useditemId?: string) => {
+  const { push, back } = UseRoute()
   const [isBrowser, setIsBrowser] = useState(false)
   const { createUseditem } = UseMutationCreateUseditem()
-
+  const { updateUseditem } = UseMutationUpdateUseditem()
   const resolver = yupResolver(registrationSchema)
   const inputsInfo = useMemo(
     () => [
@@ -69,21 +74,67 @@ const UseRegistration = () => {
     [],
   )
 
-  const onSubmitRegistration = async (
+  const onSubmitRegistration = (
     data: Omit<ICreateUseditemInput, 'tags'> & { tags: string },
   ) => {
     const stringTags = data.tags ?? ''
     const tags = getTags(stringTags)
-    const { data: useditemData } = await createUseditem({
+    void createUseditem({
       variables: {
         createUseditemInput: {
           ...data,
           tags,
         },
       },
+      awaitRefetchQueries: true,
+      refetchQueries: [
+        {
+          query: FETCH_USEDITEMS,
+          variables: {
+            page: 1,
+            search: '',
+          },
+        },
+      ],
     })
-    console.log(useditemData)
+    push('/Brand/Main')
   }
+
+  const onSubmitEdit = (
+    data: Omit<ICreateUseditemInput, 'tags'> & { tags: string },
+  ) => {
+    const stringTags = data.tags ?? ''
+    const tags = getTags(stringTags)
+    if (useditemId) {
+      void updateUseditem({
+        variables: {
+          useditemId,
+          updateUseditemInput: {
+            ...data,
+            tags,
+          },
+        },
+        awaitRefetchQueries: true,
+        refetchQueries: [
+          {
+            query: FETCH_USEDITEMS,
+            variables: {
+              page: 1,
+              search: '',
+            },
+          },
+          {
+            query: FETCH_USEDITEM,
+            variables: {
+              useditemId,
+            },
+          },
+        ],
+      })
+    }
+    back()
+  }
+
   useEffect(() => {
     setIsBrowser(true)
   }, [])
@@ -92,6 +143,7 @@ const UseRegistration = () => {
     inputsInfo,
     resolver,
     onSubmitRegistration,
+    onSubmitEdit,
     isBrowser,
     getTags,
   }

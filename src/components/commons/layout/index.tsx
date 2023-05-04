@@ -8,11 +8,11 @@ import { Container } from '../../../commons/styles'
 import Carousel from '../../Molecule/Carousel'
 
 const Layout = ({ children }: { children: JSX.Element[] }): JSX.Element => {
-  const { isSignPage, isMain } = UseLayout()
+  const { isSignPage, isMain, isLoggedIn, isBrandMain } = UseLayout()
   return (
     <>
       {!isSignPage ? <Topbar /> : null}
-      <Nav isSignPage={isSignPage} />
+      {!isLoggedIn ? <Nav isSignPage={isSignPage} /> : <Nav />}
       {isMain ? (
         <Carousel>
           <Image
@@ -35,7 +35,14 @@ const Layout = ({ children }: { children: JSX.Element[] }): JSX.Element => {
           />
         </Carousel>
       ) : null}
-      <Container>{children}</Container>
+      <Container
+        tw="pt-12 pb-[114px]"
+        css={{
+          backgroundColor: isBrandMain ? '#e5e5e5' : '#fff',
+        }}
+      >
+        {children}
+      </Container>
       <Footer />
     </>
   )

@@ -1,11 +1,21 @@
 import 'twin.macro'
-import { Button, Container, Wrapper } from '../../commons/styles'
+import { Button, Div, Wrapper } from '../../commons/styles'
 
-const ErrorPage = () => {
+interface IErrorPageProps {
+  btnLabel: string
+  title: string
+  onMovePage: () => void
+}
+
+const ErrorPage = ({ btnLabel, title, onMovePage }: IErrorPageProps) => {
   return (
-    <Wrapper tw="flex-col">
-      <h1 tw="text-4xl">로그인되지 않았습니다.</h1>
-      <Button>로그인페이지로 이동하기</Button>
+    <Wrapper tw="flex-col h-full justify-center items-center gap-12 pt-[132px]">
+      <Div tw="w-full justify-center items-center">
+        <h1 tw="text-4xl font-bold">{title}</h1>
+      </Div>
+      <Div tw="w-full justify-center">
+        <Button onClick={onMovePage}>{btnLabel}</Button>
+      </Div>
     </Wrapper>
   )
 }

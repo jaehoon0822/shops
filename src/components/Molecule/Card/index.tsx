@@ -22,7 +22,7 @@ interface ICardProps {
 
 const Card = ({ id, src, emphasis, price, title, desc }: ICardProps) => {
   return (
-    <Link href={`/items/${id}`}>
+    <Link href={`/Brand/${id}`}>
       <Div tw="cursor-pointer">
         <Div tw="flex-col">
           <Image

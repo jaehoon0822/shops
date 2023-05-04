@@ -8,9 +8,15 @@ const LOGOUT_USER = gql`
 `
 
 const UseMutationLogoutUser = () => {
-  const [logoutUser] = useMutation<Pick<IMutation, 'logoutUser'>>(LOGOUT_USER)
+  const [logoutUser, { client }] = useMutation<Pick<IMutation, 'logoutUser'>>(
+    LOGOUT_USER,
+    {
+      fetchPolicy: 'network-only',
+    },
+  )
   return {
     logoutUser,
+    client,
   }
 }
 

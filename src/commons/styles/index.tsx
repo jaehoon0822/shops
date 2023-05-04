@@ -17,9 +17,32 @@ export const Wrapper = tw.div`
 `
 
 export const Container = tw.div`
+  px-12
   flex
   justify-center
   bg-white
+`
+
+export const H1 = tw.h1`
+  mb-2 
+  mt-0
+  text-5xl
+  font-medium
+  leading-tight
+`
+export const H2 = tw.h1`
+  mb-2
+  mt-0
+  text-4xl
+  font-medium
+  leading-tight
+`
+export const H3 = tw.h1`
+  mb-2 
+  mt-0
+  text-3xl
+  font-medium
+  leading-tight
 `
 
 export const DividerY = styled.div<DividerProps>`

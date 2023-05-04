@@ -10,6 +10,7 @@ export const CarouselWrapper = tw(Div)`
 `
 export const CarouselContent = tw(Div)`
   flex-none
+  relative
   min-h-[750px]
   w-full
   min-w-full

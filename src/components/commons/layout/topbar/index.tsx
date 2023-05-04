@@ -37,7 +37,7 @@ const Topbar = () => {
             {isLoggedIn ? (
               <PointInfo />
             ) : (
-              <Link href="/signIn">
+              <Link href="/SignIn">
                 <ContentsLink>로그인</ContentsLink>
               </Link>
             )}
@@ -48,7 +48,7 @@ const Topbar = () => {
                 <ContentsLink>로그아웃</ContentsLink>
               </Div>
             ) : (
-              <Link href="/signUp">
+              <Link href="/SignUp">
                 <ContentsLink>회원가입</ContentsLink>
               </Link>
             )}

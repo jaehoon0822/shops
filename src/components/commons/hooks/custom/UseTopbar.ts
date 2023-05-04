@@ -8,12 +8,13 @@ import { accessTokenState } from '../../../../commons/stores'
 const UseTopbar = () => {
   const { data } = UseFetchUserLoggedIn()
   const setAccessToken = useSetRecoilState(accessTokenState)
-  const { logoutUser } = UseMutationLogoutUser()
+  const { logoutUser, client } = UseMutationLogoutUser()
   const { push } = UseRoute()
   const isLoggedIn = UseIsLoggedIn()
   const onClickLogout = () => {
     logoutUser()
     setAccessToken('')
+    client.resetStore()
     push('/')
   }
   return {

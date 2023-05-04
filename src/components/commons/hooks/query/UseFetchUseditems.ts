@@ -29,20 +29,20 @@ export const FETCH_USEDITEMS = gql`
 
 const UseFetchUseditems = (
   page?: number,
-  // isSoldout?: boolean,
-  // search?: string,
+  search?: string,
+  isSoldout?: boolean,
 ) => {
-  const { data } = useQuery<
+  const { data, fetchMore } = useQuery<
     Pick<IQuery, 'fetchUseditems'>,
     IQueryFetchUseditemsArgs
   >(FETCH_USEDITEMS, {
     variables: {
       page,
-      // isSoldout,
-      // search,
+      isSoldout,
+      search,
     },
   })
-  return { data }
+  return { data, fetchMore }
 }
 
 export default UseFetchUseditems
