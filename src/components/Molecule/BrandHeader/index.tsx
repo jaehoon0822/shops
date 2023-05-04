@@ -12,9 +12,14 @@ interface IBrandHeaderProps {
 }
 
 const BrandHeader = ({ brand }: IBrandHeaderProps) => {
-  const { onClickDeleteUseditem, onClickToggleUseditemPick } = UseBrandHeader(
-    brand._id,
-  )
+  const {
+    onClickDeleteUseditem,
+    onClickToggleUseditemPick,
+    pickedItems,
+    onClickToggleCart,
+    cartItems,
+  } = UseBrandHeader(brand._id)
+
   return (
     <Div tw="pt-16 items-start p-[68px] pb-[170px]">
       <Div>
@@ -45,8 +50,15 @@ const BrandHeader = ({ brand }: IBrandHeaderProps) => {
           brandId={brand._id}
           onClickDeleteUseditem={onClickDeleteUseditem}
         />
-        <Body brand={brand} onClickUseditemPick={onClickToggleUseditemPick} />
-        <Footer />
+        <Body
+          brand={brand}
+          onClickUseditemPick={onClickToggleUseditemPick}
+          isPicked={pickedItems.some((item: string) => item === brand._id)}
+        />
+        <Footer
+          onClickToggleCart={onClickToggleCart}
+          isAdded={cartItems.some((item: string) => item === brand._id)}
+        />
       </Div>
     </Div>
   )

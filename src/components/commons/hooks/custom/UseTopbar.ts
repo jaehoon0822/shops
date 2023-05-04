@@ -1,11 +1,12 @@
-import { useSetRecoilState } from 'recoil'
+import { useRecoilValue, useSetRecoilState } from 'recoil'
 import UseMutationLogoutUser from '../mutation/UseMutationLogoutUser'
 import UseFetchUserLoggedIn from '../query/UseFetchUserLoggedIn'
 import UseIsLoggedIn from './UseIsLoggedIn'
 import UseRoute from './UseRoute'
-import { accessTokenState } from '../../../../commons/stores'
+import { accessTokenState, cartItemsState } from '../../../../commons/stores'
 
 const UseTopbar = () => {
+  const cartItems = useRecoilValue(cartItemsState)
   const { data } = UseFetchUserLoggedIn()
   const setAccessToken = useSetRecoilState(accessTokenState)
   const { logoutUser, client } = UseMutationLogoutUser()
@@ -17,9 +18,11 @@ const UseTopbar = () => {
     client.resetStore()
     push('/')
   }
+
   return {
     isLoggedIn,
     onClickLogout,
+    cartNumber: cartItems.length ?? 0,
     data,
   }
 }

@@ -28,3 +28,8 @@ export const answerPageState = atom<number>({
   key: 'answerPageState',
   default: 1,
 })
+
+export const cartItemsState = atom<string[]>({
+  key: 'cartItemsState',
+  default: [],
+})

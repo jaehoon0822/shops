@@ -9,15 +9,14 @@ import {
   BrandHeaderWrapper,
 } from '../index.style'
 import { IUseditem } from '../../../../commons/types/generated/types'
-import UseToggle from '../../../commons/hooks/custom/UseToggle'
 
 interface IBodyProps {
   brand: IUseditem
+  isPicked: boolean
   onClickUseditemPick: () => Promise<void>
 }
 
-const Body = ({ brand, onClickUseditemPick }: IBodyProps) => {
-  const { isActive, onClickToggle } = UseToggle()
+const Body = ({ brand, onClickUseditemPick, isPicked }: IBodyProps) => {
   return (
     <BrandHeaderWrapper>
       <BrandHeaderTopBarWrapper tw="pt-[95px] pb-5">
@@ -37,13 +36,10 @@ const Body = ({ brand, onClickUseditemPick }: IBodyProps) => {
           <button
             type="button"
             tw="px-1 mb-[-4px]"
-            onClick={() => {
-              onClickUseditemPick()
-              onClickToggle()
-            }}
+            onClick={onClickUseditemPick}
           >
             <Image
-              src={isActive ? '/ico/ic_picked.svg' : '/ico/ic_unPicked.svg'}
+              src={isPicked ? '/ico/ic_picked.svg' : '/ico/ic_unPicked.svg'}
               width="18px"
               height="16px"
               alt="unpicked icon"
