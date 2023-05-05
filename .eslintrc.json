@@ -37,6 +37,8 @@
     "no-void": 0,
     "no-underscore-dangle": 0,
     "react/jsx-no-useless-fragment": 0,
+    "no-unneeded-ternary": 0,
+    "@typescript-eslint/naming-convention": 0,
     "react/require-default-props": 0
   }
 }

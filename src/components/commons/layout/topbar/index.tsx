@@ -13,7 +13,7 @@ import UseMovePage from '../../hooks/custom/UseMovePage'
 import PointInfo from './pointInfo'
 
 const Topbar = () => {
-  const { isLoggedIn, onClickLogout, cartNumber } = UseTopbar()
+  const { isLoggedIn, onClickLogout, cartNumber, data } = UseTopbar()
   const { onMovePage } = UseMovePage()
 
   return (
@@ -35,7 +35,7 @@ const Topbar = () => {
         <ContentsWrapper>
           <ContentsBox>
             {isLoggedIn ? (
-              <PointInfo />
+              <PointInfo userData={data?.fetchUserLoggedIn} />
             ) : (
               <Link href="/SignIn">
                 <ContentsLink>로그인</ContentsLink>

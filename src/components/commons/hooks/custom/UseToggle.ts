@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import { useState } from 'react'
 
 const UseToggle = () => {
   const [isActive, setIsActive] = useState(false)
