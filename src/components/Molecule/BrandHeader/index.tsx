@@ -57,7 +57,7 @@ const BrandHeader = ({ brand }: IBrandHeaderProps) => {
           isPicked={pickedItems.some((item: string) => item === brand._id)}
         />
         <Footer
-          userId={brand.seller?._id}
+          userId={brand.seller?._id as string}
           onClickToggleCart={onClickToggleCart}
           onClickBuyItem={onClickBuyItem}
           isAdded={cartItems.some((item: string) => item === brand._id)}

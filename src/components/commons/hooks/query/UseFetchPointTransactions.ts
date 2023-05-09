@@ -1,1 +1,0 @@
-export const fetch_point_transactions
