@@ -8,6 +8,7 @@ import UseRoute from './UseRoute'
 import { FETCH_USEDITEMS } from '../query/UseFetchUseditems'
 import UseMutationUpdateUseditem from '../mutation/UseMutationUpdateUseditem'
 import { FETCH_USEDITEM } from '../query/UseFetchUseditem'
+import { FETCH_USER_LOGGED_IN } from '../query/UseFetchUserLoggedIn'
 
 const UseRegistration = (useditemId?: string) => {
   const { push, back } = UseRoute()
@@ -94,6 +95,9 @@ const UseRegistration = (useditemId?: string) => {
             page: 1,
             search: '',
           },
+        },
+        {
+          query: FETCH_USER_LOGGED_IN,
         },
       ],
     })

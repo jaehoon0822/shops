@@ -1,4 +1,6 @@
-import UseFetchUserLoggedIn from '../query/UseFetchUserLoggedIn'
+import UseFetchUserLoggedIn, {
+  FETCH_USER_LOGGED_IN,
+} from '../query/UseFetchUserLoggedIn'
 import UseToggle from './UseToggle'
 import {
   RequestPayParams,
@@ -11,14 +13,15 @@ const UsePointInfo = () => {
   const { data: fetchUserData } = UseFetchUserLoggedIn()
   const { createPointTransactionOfLoading } =
     UseCreatePointTransactionOfLoading()
-  const onClickPaymentPoint = async (val: string) => {
+
+  const onClickPaymentPoint = (val: string) => {
     if (!window.IMP) return
     const { IMP } = window
-    IMP.init('imp10670440')
+    IMP.init('imp49910675')
 
     const IMPData: RequestPayParams = {
       pg: 'kakaopay',
-      pay_method: 'kakaopay', // 결제수단
+      pay_method: 'card', // 결제수단
       merchant_uid: `mid_${new Date().getTime()}`, // 주문번호
       amount: Number(val), // 결제금액
       name: `point${val}`, // 주문명
@@ -27,19 +30,24 @@ const UsePointInfo = () => {
       buyer_email: fetchUserData?.fetchUserLoggedIn.email, // 구매자 이메일
     }
 
-    IMP.request_pay(IMPData, async (response: RequestPayResponse) => {
+    IMP.request_pay(IMPData, (response: RequestPayResponse) => {
       const { success, error_msg, imp_uid } = response
 
       if (success) {
-        console.log('결제 성공', imp_uid)
-        const { data } = await createPointTransactionOfLoading({
+        void createPointTransactionOfLoading({
           variables: {
             impUid: imp_uid as string,
           },
+          refetchQueries: [
+            {
+              query: FETCH_USER_LOGGED_IN,
+            },
+          ],
         })
-        console.log(data)
+        onClickToggle()
+        document.body.style.removeProperty('overflow')
       } else {
-        alert(`결제 실패: ${error_msg}`)
+        console.log(`결제 실패: ${error_msg}`)
       }
     })
   }

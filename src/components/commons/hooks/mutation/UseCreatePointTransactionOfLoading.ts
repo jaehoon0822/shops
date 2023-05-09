@@ -10,15 +10,6 @@ const CREATE_POINT_TRANSACTION_OF_LOADING = gql`
       _id
       impUid
       amount
-      balance
-      status
-      statusDetail
-      user {
-        _id
-      }
-      createdAt
-      updatedAt
-      deletedAt
     }
   }
 `

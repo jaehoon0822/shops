@@ -6,6 +6,8 @@ import UseMutationToggleUseditemPick from '../mutation/UseMutationToggleUseditem
 import { FETCH_USEDITEMS } from '../query/UseFetchUseditems'
 import UseFetchUseditemsIPicked from '../query/UseFetchUseditemsIPiecked'
 import UseRoute from './UseRoute'
+import UseMutationCreatePointTransactionOfBuyingAndSelling from '../mutation/UseMutationCreatePointTransactionOfBuyingAndSelling'
+import { FETCH_USER_LOGGED_IN } from '../query/UseFetchUserLoggedIn'
 
 const UseBrandHeader = (useditemId: string) => {
   const [cartItems, setCartItems] = useRecoilState<string[]>(cartItemsState)
@@ -15,6 +17,8 @@ const UseBrandHeader = (useditemId: string) => {
   const { deleteUseditem } = UseMutationDeleteUseditem()
   const { toggleUseditemPick } = UseMutationToggleUseditemPick()
   const { data: useditemsIPickedData } = UseFetchUseditemsIPicked()
+  const { createPointTransactionOfBuyingAndSelling } =
+    UseMutationCreatePointTransactionOfBuyingAndSelling()
 
   const onClickDeleteUseditem = () => {
     void deleteUseditem({
@@ -63,6 +67,27 @@ const UseBrandHeader = (useditemId: string) => {
     }
   }
 
+  const onClickBuyItem = () => {
+    void createPointTransactionOfBuyingAndSelling({
+      variables: {
+        useritemId: useditemId,
+      },
+      refetchQueries: [
+        {
+          query: FETCH_USEDITEMS,
+          variables: {
+            page: 1,
+            search: '',
+          },
+        },
+        {
+          query: FETCH_USER_LOGGED_IN,
+        },
+      ],
+    })
+    back()
+  }
+
   useEffect(() => {
     const pickedItem = localStorage.getItem('pickedItems') ?? []
     const cartItem = localStorage.getItem('cartItems') ?? []
@@ -86,6 +111,7 @@ const UseBrandHeader = (useditemId: string) => {
     onClickToggleCart,
     onClickDeleteUseditem,
     onClickToggleUseditemPick,
+    onClickBuyItem,
   }
 }
 

@@ -17,6 +17,7 @@ const BrandHeader = ({ brand }: IBrandHeaderProps) => {
     onClickToggleUseditemPick,
     pickedItems,
     onClickToggleCart,
+    onClickBuyItem,
     cartItems,
   } = UseBrandHeader(brand._id)
 
@@ -56,7 +57,9 @@ const BrandHeader = ({ brand }: IBrandHeaderProps) => {
           isPicked={pickedItems.some((item: string) => item === brand._id)}
         />
         <Footer
+          userId={brand.seller?._id}
           onClickToggleCart={onClickToggleCart}
+          onClickBuyItem={onClickBuyItem}
           isAdded={cartItems.some((item: string) => item === brand._id)}
         />
       </Div>
