@@ -17,9 +17,48 @@ export const Wrapper = tw.div`
 `
 
 export const Container = tw.div`
+  px-12
   flex
   justify-center
   bg-white
+`
+
+export const H1 = tw.h1`
+  mb-2 
+  mt-0
+  text-5xl
+  font-medium
+  leading-tight
+`
+export const H2 = tw.h2`
+  mb-2
+  mt-0
+  text-4xl
+  font-medium
+  leading-tight
+`
+export const H3 = tw.h3`
+  mb-2 
+  mt-0
+  text-3xl
+  font-medium
+  leading-tight
+`
+
+export const H4 = tw.h4`
+  mb-2 
+  mt-0
+  text-2xl
+  font-medium
+  leading-tight
+`
+
+export const H5 = tw.h5`
+  mb-2 
+  mt-0
+  text-xl
+  font-medium
+  leading-tight
 `
 
 export const DividerY = styled.div<DividerProps>`
@@ -50,6 +89,6 @@ export const Button = styled.button<ButtonProps>(() => [
   ({ variant = 'default' }) => ButtonVariants[variant],
   ({ isFilled = 'false' }) =>
     isFilled
-      ? tw`bg-black text-white outline outline-2 outline-black transition-all duration-100 ease-in hover:(opacity-50) active:(opacity-100 bg-black text-white)`
-      : tw`bg-white text-black outline outline-2 outline-black transition-all duration-100 ease-in hover:(opacity-50) active:(opacity-100)`,
+      ? tw`bg-black text-white outline outline-2 outline-black transition-all duration-100 ease-in hover:(opacity-80) active:(opacity-100 bg-black text-white)`
+      : tw`bg-white text-black outline outline-2 outline-black transition-all duration-100 ease-in hover:(opacity-80) active:(opacity-100)`,
 ])

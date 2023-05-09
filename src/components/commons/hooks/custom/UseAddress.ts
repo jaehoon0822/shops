@@ -3,7 +3,7 @@ import { Address } from 'react-daum-postcode'
 import { useFormContext } from 'react-hook-form'
 
 const UseAddress = () => {
-  const { register, setValue } = useFormContext()
+  const { register, setValue, getValues } = useFormContext()
   const [isActive, setIsActive] = useState<boolean>(false)
   const onToggleActive = () => {
     setIsActive((prev) => !prev)
@@ -15,7 +15,7 @@ const UseAddress = () => {
     setValue('useditemAddress.address', roadAddress)
     document.body.style.removeProperty('overflow')
   }
-  return { register, isActive, onToggleActive, onComplate }
+  return { register, isActive, onToggleActive, onComplate, getValues, setValue }
 }
 
 export default UseAddress

@@ -21,9 +21,22 @@ interface ICardProps {
 }
 
 const Card = ({ id, src, emphasis, price, title, desc }: ICardProps) => {
+  const pickedItems =
+    localStorage.getItem('pickedItems') !== null
+      ? JSON.parse(localStorage.getItem('pickedItems') as string)
+      : []
+  const isPicked = pickedItems.some((item: string) => item === id)
   return (
-    <Link href={`/items/${id}`}>
-      <Div tw="cursor-pointer">
+    <Link href={`/Brand/${id}`}>
+      <Div tw="cursor-pointer relative w-full">
+        <Div tw="absolute top-4 right-0 w-8 z-10">
+          <Image
+            src={isPicked ? '/ico/ic_picked.svg' : '/ico/ic_unPicked.svg'}
+            width="18px"
+            height="16px"
+            alt="unpicked icon"
+          />
+        </Div>
         <Div tw="flex-col">
           <Image
             src={

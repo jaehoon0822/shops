@@ -2,15 +2,16 @@ import { ChangeEvent, MouseEvent, useRef, useState } from 'react'
 import { useFormContext } from 'react-hook-form'
 import UseMutationUploadFile from '../mutation/UseMutationUploadFile'
 
-const UseImageInput = () => {
+const UseImageInput = (defaultValue?: string[]) => {
   const {
     setValue,
     formState: { errors },
   } = useFormContext()
+
   const { uploadFile } = UseMutationUploadFile()
   const [currentId, setCurrentId] = useState<number>(-1)
-  const [files, setFiles] = useState<string[]>([])
-  const [fileUrls, setFileUrls] = useState<string[]>([])
+  const [files, setFiles] = useState<string[]>(defaultValue ?? [])
+  const [fileUrls, setFileUrls] = useState<string[]>(defaultValue ?? [])
   const UploadRef = useRef<HTMLInputElement | null>(null)
 
   const file2Url = (file: File) => {
@@ -88,6 +89,8 @@ const UseImageInput = () => {
     files,
     errors,
     setValue,
+    setFileUrls,
+    setFiles,
   }
 }
 

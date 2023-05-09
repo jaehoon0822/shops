@@ -14,16 +14,15 @@ interface ICarouselProps {
 }
 
 const Carousel = ({ children, sec }: ICarouselProps) => {
-  const { idx, setIdx, clearInter, setClearInter, onClickDot } = UseCarousel()
+  const { idx, setIdx, onClickDot } = UseCarousel()
   const len = Children.count(children)
 
   useEffect(() => {
     const clear = setTimeout(() => {
       setIdx((prev) => (prev + 1) % len)
     }, sec ?? 3000)
-    if (clearInter === null) setClearInter(clear)
     return () => clearTimeout(clear)
-  }, [idx, setIdx, setClearInter, len, clearInter, sec])
+  }, [idx, setIdx, len, sec])
 
   return (
     <CarouselWrapper>

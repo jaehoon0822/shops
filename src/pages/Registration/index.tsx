@@ -1,8 +1,8 @@
 import Registration from '../../components/Template/Registration'
-import { Schema } from '../../commons/validation/registration.yup'
+import { ICreateUseditemInput } from '../../commons/types/generated/types'
 
 interface IRegistrationPageProps {
-  defaultValue: Schema
+  defaultValue: ICreateUseditemInput
 }
 
 const RegistrationPage = ({ defaultValue }: IRegistrationPageProps) => {
@@ -12,17 +12,10 @@ const RegistrationPage = ({ defaultValue }: IRegistrationPageProps) => {
 export default RegistrationPage
 
 export async function getServerSideProps() {
-  const defaultValue: Schema = {
+  const defaultValue: Omit<ICreateUseditemInput, 'price'> = {
     name: '',
     contents: '',
     remarks: '',
-    useditemAddress: {
-      address: '',
-      addressDetail: '',
-      zipcode: '',
-    },
-    tags: '',
-    images: [],
   }
   return {
     props: {

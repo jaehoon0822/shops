@@ -13,7 +13,7 @@ import UseMovePage from '../../hooks/custom/UseMovePage'
 import PointInfo from './pointInfo'
 
 const Topbar = () => {
-  const { isLoggedIn, onClickLogout } = UseTopbar()
+  const { isLoggedIn, onClickLogout, cartNumber, data } = UseTopbar()
   const { onMovePage } = UseMovePage()
 
   return (
@@ -35,9 +35,9 @@ const Topbar = () => {
         <ContentsWrapper>
           <ContentsBox>
             {isLoggedIn ? (
-              <PointInfo />
+              <PointInfo userData={data?.fetchUserLoggedIn} />
             ) : (
-              <Link href="/signIn">
+              <Link href="/SignIn">
                 <ContentsLink>로그인</ContentsLink>
               </Link>
             )}
@@ -48,13 +48,16 @@ const Topbar = () => {
                 <ContentsLink>로그아웃</ContentsLink>
               </Div>
             ) : (
-              <Link href="/signUp">
+              <Link href="/SignUp">
                 <ContentsLink>회원가입</ContentsLink>
               </Link>
             )}
           </ContentsBox>
           <ContentsBox>
-            <ContentsLink>장바구니</ContentsLink>
+            <ContentsLink tw="whitespace-nowrap">장바구니</ContentsLink>
+            <Div tw="justify-center rounded-full p-2 bg-red-500 w-8 h-8 text-white">
+              <span>{cartNumber}</span>
+            </Div>
           </ContentsBox>
         </ContentsWrapper>
       </Wrapper>

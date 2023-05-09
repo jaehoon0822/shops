@@ -8,14 +8,28 @@ import { ContentsSpan } from '../../commons/layout/index.styled'
 import Modal from '../Modal'
 import UseAddress from '../../commons/hooks/custom/UseAddress'
 import { AddressInput } from './index.styled'
+import {
+  IUseditemAddress,
+  IUseditemAddressInput,
+} from '../../../commons/types/generated/types'
 
 interface IAddressProps {
   label: string
   inputs?: { name: string; placeholder: string; type: string }[]
+  defaultValue?:
+    | (IUseditemAddress & { [key: string]: any })
+    | (IUseditemAddressInput & { [key: string]: any })
 }
 
-const Address = ({ label, inputs }: IAddressProps) => {
-  const { register, isActive, onToggleActive, onComplate } = UseAddress()
+const Address = ({ label, inputs, defaultValue }: IAddressProps) => {
+  const {
+    register,
+    isActive,
+    onToggleActive,
+    onComplate,
+    setValue,
+    getValues,
+  } = UseAddress()
 
   return (
     <Div tw="flex-col items-start">
@@ -25,7 +39,7 @@ const Address = ({ label, inputs }: IAddressProps) => {
         {label}
       </ContentsSpan>
       <Div tw="flex-row items-center justify-start">
-        <Map w="500px" h="252px" />
+        <Map w="500px" h="252px" setValue={setValue} getValues={getValues} />
         <Div tw="flex-col justify-center items-start">
           {inputs?.map((input, idx) => (
             <Fragment key={uuidv4()}>
@@ -41,6 +55,9 @@ const Address = ({ label, inputs }: IAddressProps) => {
                     bg-transparent"
                     type={input.type}
                     placeholder={input.placeholder}
+                    defaultValue={
+                      defaultValue?.[input.name.split('.')[1]] ?? ''
+                    }
                     {...register(input.name)}
                   />
                   <Button onClick={onToggleActive} variant="small">
@@ -66,6 +83,9 @@ const Address = ({ label, inputs }: IAddressProps) => {
                     tw="w-full
                     outline-none
                     bg-[#e9e9e9]"
+                    defaultValue={
+                      defaultValue?.[input.name.split('.')[1]] ?? ''
+                    }
                     {...register(input.name)}
                   />
                 </Div>

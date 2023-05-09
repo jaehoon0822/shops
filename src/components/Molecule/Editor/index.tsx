@@ -13,7 +13,7 @@ interface IEditorProps {
   defaultValue?: string
 }
 
-const Editor = ({ name, label, placeholder }: IEditorProps) => {
+const Editor = ({ name, label, placeholder, defaultValue }: IEditorProps) => {
   const {
     control,
     formState: { errors },
@@ -33,7 +33,7 @@ const Editor = ({ name, label, placeholder }: IEditorProps) => {
       <Controller
         name={name}
         control={control}
-        defaultValue=""
+        defaultValue={defaultValue ?? ''}
         render={({ field }) => (
           <ReactQuill
             {...field}

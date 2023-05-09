@@ -1,7 +1,12 @@
 import UseRoute from './UseRoute'
 
 const UseNav = () => {
-  const navContents = ['BRAND', 'CATEGORY', 'LIFE', 'BEATY']
+  const navContents = [
+    { label: 'BRAND', url: '/Brand/Main' },
+    { label: 'CATEGORY', url: '/' },
+    { label: 'LIFE', url: '/' },
+    { label: 'BEATY', url: '/' },
+  ]
   const navInfos = ['#STYLE', 'EVENT', 'BEST']
   const { pathname } = UseRoute()
   return {

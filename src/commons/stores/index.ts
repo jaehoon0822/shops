@@ -18,3 +18,18 @@ export const filesState = atom<string[]>({
   key: 'fileState',
   default: [],
 })
+
+export const pageState = atom<number>({
+  key: 'pageState',
+  default: 1,
+})
+
+export const answerPageState = atom<number>({
+  key: 'answerPageState',
+  default: 1,
+})
+
+export const cartItemsState = atom<string[]>({
+  key: 'cartItemsState',
+  default: [],
+})

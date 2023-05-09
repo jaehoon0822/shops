@@ -1,6 +1,7 @@
 import React from 'react'
 import { v4 as uuidv4 } from 'uuid'
 import tw from 'twin.macro'
+import Link from 'next/link'
 import Image from 'next/image'
 import {
   ContentsBox,
@@ -11,10 +12,9 @@ import {
 import { Container, DividerY, Wrapper } from '../../../../commons/styles'
 import UseNav from '../../hooks/custom/UseNav'
 import UseMovePage from '../../hooks/custom/UseMovePage'
-import Link from 'next/link'
 
 interface NavProps {
-  isSignPage: boolean
+  isSignPage?: boolean
 }
 
 const Nav = ({ isSignPage }: NavProps) => {
@@ -42,7 +42,11 @@ const Nav = ({ isSignPage }: NavProps) => {
           ) : null}
           {navContents.map((content) => (
             <ContentsBox key={uuidv4()}>
-              <ContentsLink css={tw`text-white`}>{content}</ContentsLink>
+              <Link href={content.url}>
+                <ContentsLink css={tw`text-white`}>
+                  {content.label}
+                </ContentsLink>
+              </Link>
             </ContentsBox>
           ))}
           <DividerY h="20px" w="2px" />
@@ -55,9 +59,9 @@ const Nav = ({ isSignPage }: NavProps) => {
         {isSignPage ? (
           <ContentsWrapper css={tw`text-[14px] mx-auto`}>
             <ContentsBox>
-              <Link href={pathname === '/signIn' ? '/signUp' : '/signIn'}>
+              <Link href={pathname === '/SignIn' ? '/SignUp' : '/SignIn'}>
                 <ContentsLink css={tw`text-white`}>
-                  {pathname === '/signIn' ? '회원가입' : '로그인'}
+                  {pathname === '/SignIn' ? '회원가입' : '로그인'}
                 </ContentsLink>
               </Link>
             </ContentsBox>

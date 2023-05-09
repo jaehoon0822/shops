@@ -1,16 +1,21 @@
 import 'twin.macro'
+import { UseFormGetValues, UseFormSetValue } from 'react-hook-form'
 import React, { useEffect } from 'react'
 import UseMap from '../../commons/hooks/custom/UseMap'
 
 interface IMapProps {
   w?: string
   h?: string
+  ad?: string
+  getValues?: UseFormGetValues<any>
+  setValue?: UseFormSetValue<any>
 }
 
-const Map = ({ w, h }: IMapProps) => {
-  const { isLoaded, settingMap, settingScript, getValues } = UseMap()
+const Map = ({ w, h, ad, getValues, setValue }: IMapProps) => {
+  const { isLoaded, settingMap, settingScript } = UseMap(setValue)
 
-  const address = getValues('useditemAddress.address')
+  const address = ad ?? getValues?.('useditemAddress.address')
+
   useEffect(settingScript, [settingScript])
   useEffect(() => {
     if (!isLoaded) return

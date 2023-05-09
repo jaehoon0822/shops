@@ -1,16 +1,16 @@
 import tw from 'twin.macro'
 import Image from 'next/image'
+import { useEffect } from 'react'
 import { v4 as uuidv4 } from 'uuid'
 import { Div } from '../../../commons/styles'
 import { ContentsSpan } from '../../commons/layout/index.styled'
 import { UploadBox, UploadBoxSpan, UploadImageInput } from './index.styled'
 import UseImageInput from '../../commons/hooks/custom/UseImageInput'
-import { useEffect } from 'react'
 
 interface IUploadImageProps {
   label: string
   name: string
-  defaultValue?: string
+  defaultValue?: string[]
 }
 
 const UploadImage = ({ label, name, defaultValue }: IUploadImageProps) => {
@@ -23,7 +23,7 @@ const UploadImage = ({ label, name, defaultValue }: IUploadImageProps) => {
     files,
     errors,
     setValue,
-  } = UseImageInput()
+  } = UseImageInput(defaultValue)
 
   useEffect(() => {
     setValue('images', files)
@@ -41,7 +41,6 @@ const UploadImage = ({ label, name, defaultValue }: IUploadImageProps) => {
           onChange={onChangeUploadImage}
           type="file"
           name={name}
-          defaultValue={defaultValue}
           ref={UploadRef}
         />
         <Div tw="justify-start">
@@ -73,7 +72,16 @@ const UploadImage = ({ label, name, defaultValue }: IUploadImageProps) => {
                       alt="close"
                     />
                   </Div>
-                  <Image src={file} height="100%" width="100%" alt="images" />
+                  <Image
+                    src={
+                      file.startsWith('codecamp-file-storage')
+                        ? `https://storage.googleapis.com/${file}`
+                        : file
+                    }
+                    height="100%"
+                    width="100%"
+                    alt="images"
+                  />
                 </Div>
               )}
             </UploadBox>
